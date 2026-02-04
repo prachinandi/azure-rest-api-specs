@@ -13,8 +13,10 @@ using Microsoft.SqlVirtualMachine;
 @@clientName(AvailabilityGroupListeners.createOrUpdate::parameters.resource,
   "parameters"
 );
-#suppress "deprecated" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-@@flattenProperty(AvailabilityGroupListener.properties);
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "Back compatibility"
+@@Azure.ClientGenerator.Core.Legacy.flattenProperty(AvailabilityGroupListener.properties
+);
 
 @@clientName(SqlVirtualMachineGroups.createOrUpdate::parameters.resource,
   "parameters"
@@ -22,8 +24,10 @@ using Microsoft.SqlVirtualMachine;
 @@clientName(SqlVirtualMachineGroups.update::parameters.properties,
   "parameters"
 );
-#suppress "deprecated" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-@@flattenProperty(SqlVirtualMachineGroup.properties);
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "Back compatibility"
+@@Azure.ClientGenerator.Core.Legacy.flattenProperty(SqlVirtualMachineGroup.properties
+);
 
 @@clientName(SqlVirtualMachines.createOrUpdate::parameters.resource,
   "parameters"
@@ -34,5 +38,7 @@ using Microsoft.SqlVirtualMachine;
 );
 @@clientName(SqlVirtualMachines.troubleshoot::parameters.body, "parameters");
 @@clientName(Operation, "Info", "csharp");
-#suppress "deprecated" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-@@flattenProperty(SqlVirtualMachine.properties);
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "Back compatibility"
+@@Azure.ClientGenerator.Core.Legacy.flattenProperty(SqlVirtualMachine.properties
+);

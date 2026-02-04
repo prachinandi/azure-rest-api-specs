@@ -3,35 +3,48 @@ import "@azure-tools/typespec-client-generator-core";
 using Azure.ClientGenerator.Core;
 using Microsoft.HardwareSecurityModules;
 
-#suppress "deprecated" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-@@flattenProperty(BackupResult.properties, "!python,!java,!csharp");
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "Back compatibility"
+@@Azure.ClientGenerator.Core.Legacy.flattenProperty(BackupResult.properties,
+  "!python,!java,!csharp,!javascript"
+);
 @@clientName(Error.innererror, "innerError");
 @@clientName(CloudHsmClusters.createOrUpdate::parameters.resource, "body");
 @@clientName(CloudHsmClusters.update::parameters.properties, "body");
 @@clientName(CloudHsmClusters.restore::parameters.body,
   "restoreRequestProperties"
 );
-#suppress "deprecated" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-@@flattenProperty(CloudHsmCluster.properties, "!python,!java,!csharp");
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "Back compatibility"
+@@Azure.ClientGenerator.Core.Legacy.flattenProperty(CloudHsmCluster.properties,
+  "!python,!java,!csharp,!javascript"
+);
 @@clientName(PrivateEndpointConnections.create::parameters.resource,
   "properties"
 );
-#suppress "deprecated" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-@@flattenProperty(PrivateEndpointConnection.properties,
-  "!python,!java,!csharp"
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "Back compatibility"
+@@Azure.ClientGenerator.Core.Legacy.flattenProperty(PrivateEndpointConnection.properties,
+  "!python,!java,!csharp,!javascript"
 );
 @@clientName(DedicatedHsms.createOrUpdate::parameters.resource, "parameters");
 @@clientName(DedicatedHsms.update::parameters.properties, "parameters");
-#suppress "deprecated" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-@@flattenProperty(DedicatedHsm.properties, "!python,!java,!csharp");
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "Back compatibility"
+@@Azure.ClientGenerator.Core.Legacy.flattenProperty(DedicatedHsm.properties,
+  "!python,!java,!csharp,!javascript"
+);
 @@clientName(CloudHsmClusters.validateBackupProperties::parameters.body,
-  "backupRequestProperties"
+  "backupRequestProperties",
+  "!csharp"
 );
 @@clientName(CloudHsmClusters.backup::parameters.body,
-  "backupRequestProperties"
+  "backupRequestProperties",
+  "!csharp"
 );
 @@clientName(CloudHsmClusters.validateRestoreProperties::parameters.body,
-  "restoreRequestProperties"
+  "restoreRequestProperties",
+  "!csharp"
 );
 //@@clientLocation and @@clientName decorators for operations that had custom @operationId
 //These ensure consistent operationId generation and client method naming in the output

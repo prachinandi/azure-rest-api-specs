@@ -3,6 +3,8 @@ import "@typespec/rest";
 import "@typespec/versioning";
 import "@azure-tools/typespec-azure-core";
 import "@azure-tools/typespec-azure-resource-manager";
+import "@azure-tools/typespec-client-generator-core";
+import "./back-compatible.tsp";
 
 /** Traffic Controller Provider management API. */
 @armProviderNamespace
@@ -17,14 +19,12 @@ enum Versions {
   v2023_11_01: "2023-11-01",
 
   /** 2024-05-01 preview version */
-  @useDependency(Azure.ResourceManager.Versions.v1_0_Preview_1)
   v2024_05_01_preview: "2024-05-01-preview",
 
   /** 2025-01-01 stable version */
   v2025_05_01: "2025-01-01",
 
   /** 2025-03-01 preview version */
-  @useDependency(Azure.ResourceManager.Versions.v1_0_Preview_1)
   v2025_03_01_preview: "2025-03-01-preview",
 }
 
@@ -77,12 +77,11 @@ model Association is TrackedResource<AssociationProperties> {
 
 /** The type used for update operations of the Association. */
 model AssociationUpdate {
-  /** Resource tags. */
-  tags?: TrackedResource.tags;
+  ...Azure.ResourceManager.Foundations.ArmTagsProperty;
 
   /** The resource-specific properties for this resource. */
-  #suppress "@azure-tools/typespec-azure-core/no-private-usage"
-  @Azure.ResourceManager.Private.conditionalClientFlatten
+  #suppress "@azure-tools/typespec-azure-core/no-legacy-usage"
+  @Azure.ClientGenerator.Core.Legacy.flattenProperty
   properties?: AssociationUpdateProperties;
 }
 
@@ -319,6 +318,7 @@ interface AssociationsInterface {
     Association,
     LroHeaders = Azure.Core.Foundations.RetryAfterHeader
   >;
+  @patch(#{ implicitOptionality: true })
   update is ArmCustomPatchSync<Association, AssociationUpdate>;
   delete is ArmResourceDeleteWithoutOkAsync<Association>;
   listByTrafficController is ArmResourceListByParent<Association>;
@@ -333,6 +333,7 @@ interface FrontendsInterface {
     Frontend,
     LroHeaders = Azure.Core.Foundations.RetryAfterHeader
   >;
+  @patch(#{ implicitOptionality: true })
   update is ArmCustomPatchSync<
     Frontend,
     Azure.ResourceManager.Foundations.ResourceUpdateModel<
@@ -354,6 +355,7 @@ interface SecurityPoliciesInterface {
     SecurityPolicy,
     LroHeaders = Azure.Core.Foundations.RetryAfterHeader
   >;
+  @patch(#{ implicitOptionality: true })
   update is ArmCustomPatchSync<
     SecurityPolicy,
     Azure.ResourceManager.Foundations.ResourceUpdateModel<
@@ -374,6 +376,7 @@ interface TrafficControllerInterface {
     TrafficController,
     LroHeaders = Azure.Core.Foundations.RetryAfterHeader
   >;
+  @patch(#{ implicitOptionality: true })
   update is ArmCustomPatchSync<
     TrafficController,
     Azure.ResourceManager.Foundations.ResourceUpdateModel<

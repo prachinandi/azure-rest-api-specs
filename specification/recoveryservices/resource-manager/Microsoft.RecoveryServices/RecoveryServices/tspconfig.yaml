@@ -11,14 +11,8 @@ options:
     azure-resource-provider-folder: "resource-manager"
     arm-types-dir: "{project-root}/../../../../common-types/resource-management"
     examples-dir: "{project-root}/examples"
-  "@azure-tools/typespec-csharp":
-    emitter-output-dir: "{output-dir}/{service-dir}/{namespace}"
-    flavor: azure
-    clear-output-folder: true
-    model-namespace: true
-    namespace: "Azure.ResourceManager.RecoveryServices"
   "@azure-tools/typespec-python":
-    package-dir: "azure-mgmt-recoveryservices"
+    emitter-output-dir: "{output-dir}/{service-dir}/azure-mgmt-recoveryservices"
     namespace: "azure.mgmt.recoveryservices"
     generate-test: true
     generate-sample: true
@@ -29,21 +23,24 @@ options:
     service-name: "RecoveryServices" # human-readable service name, whitespace allowed
     flavor: azure
   "@azure-tools/typespec-ts":
-    package-dir: "arm-recoveryservices"
+    emitter-output-dir: "{output-dir}/{service-dir}/arm-recoveryservices"
     flavor: azure
     experimental-extensible-enums: true
     package-details:
       name: "@azure/arm-recoveryservices"
   "@azure-tools/typespec-go":
     service-dir: "sdk/resourcemanager/recoveryservices"
-    package-dir: "armrecoveryservices"
-    module: "github.com/Azure/azure-sdk-for-go/{service-dir}/{package-dir}"
+    emitter-output-dir: "{output-dir}/{service-dir}/armrecoveryservices"
+    module: "github.com/Azure/azure-sdk-for-go/{service-dir}/armrecoveryservices/v2"
     fix-const-stuttering: true
     flavor: "azure"
     generate-samples: true
     generate-fakes: true
     head-as-boolean: true
     inject-spans: true
+  "@azure-typespec/http-client-csharp-mgmt":
+    namespace: "Azure.ResourceManager.RecoveryServices"
+    emitter-output-dir: "{output-dir}/{service-dir}/{namespace}"
 linter:
   extends:
     - "@azure-tools/typespec-azure-rulesets/resource-manager"

@@ -5,12 +5,15 @@ using Azure.Core;
 using Azure.ClientGenerator.Core;
 using Microsoft.RecoveryServices;
 
-#suppress "deprecated" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-@@flattenProperty(PrivateLinkResource.properties);
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "Back compatibility"
+@@Azure.ClientGenerator.Core.Legacy.flattenProperty(PrivateLinkResource.properties,
+  "!javascript"
+);
 
 @@clientName(Vaults.createOrUpdate::parameters.resource, "vault");
 @@clientName(Vaults.update::parameters.properties, "vault");
-@@clientName(Vaults.create::parameters.properties, "certificateRequest");
+@@clientName(Vaults.create::parameters.resource, "certificateRequest");
 
 @@clientName(VaultExtendedInfoResources.createOrUpdate::parameters.resource,
   "resourceResourceExtendedInfoDetails",
@@ -28,8 +31,11 @@ using Microsoft.RecoveryServices;
   "resourceExtendedInfoDetails",
   "python"
 );
-#suppress "deprecated" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-@@flattenProperty(VaultExtendedInfoResource.properties);
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "Back compatibility"
+@@Azure.ClientGenerator.Core.Legacy.flattenProperty(VaultExtendedInfoResource.properties,
+  "!javascript"
+);
 @@clientName(RecoveryServicesOperationGroup.capabilities::parameters.body,
   "input"
 );
@@ -62,11 +68,14 @@ using Microsoft.RecoveryServices;
 );
 
 // Vaults operations
-@@clientLocation(Vaults.create, "VaultCertificates");
-@@clientLocation(Vaults.registeredIdentitiesDelete, "RegisteredIdentities");
-@@clientName(Vaults.registeredIdentitiesDelete, "Delete");
-@@clientLocation(Vaults.list, "ReplicationUsages");
-@@clientLocation(Vaults.listByVaults, "Usages");
+@@clientLocation(Vaults.create, "VaultCertificates", "!csharp");
+@@clientLocation(Vaults.registeredIdentitiesDelete,
+  "RegisteredIdentities",
+  "!csharp"
+);
+@@clientName(Vaults.registeredIdentitiesDelete, "Delete", "!csharp");
+@@clientLocation(Vaults.list, "ReplicationUsages", "!csharp");
+@@clientLocation(Vaults.listByVaults, "Usages", "!csharp");
 
 // GetOperationResult operations
 @@clientLocation(GetOperationResult.listByResourceGroup, Vaults);
